@@ -1,0 +1,129 @@
+/*
+ This work, by anrxc (sysphere.org) is licensed under the Creative
+ Commons Attribution 3.0 license: http://creativecommons.org/licenses/by/3.0
+*/
+
+body {
+    padding:0;
+    margin:0;
+    font:90% verdana,tahoma,sans-serif;
+    /*background: #E8E3CF;*/
+    background: #ebe9db url('static/images/bg.gif') repeat-x;
+    color:#555;
+}
+
+a {
+    text-decoration:none;
+    background-color:inherit;
+    font-weight:normal;
+    color: #2175BC;
+}
+
+a:hover {
+    background-color:inherit;
+    color:#FF7400;
+}
+/* Valid in CSS3. 
+   http://sysphere.org/temp/Web_Standards_Advocate.html */
+.shade img {
+    opacity:1;
+}
+.shade:hover img {
+    opacity:0.8;
+}
+
+h1 {
+    margin:0;
+    font-size:3.4em;
+    letter-spacing:-2px;
+    text-align:right;
+    background-color:inherit;
+    color:#BBB;
+    /*display: none;*/
+}
+
+h2 {
+    color: #B4C24B;
+    margin:5px 0 10px 0;
+    font-size:1.6em;
+    letter-spacing:-1px;
+    font-weight:normal;
+}
+
+p {
+    margin:0 0 15px 0;
+    line-height:1.3em;
+}
+
+img {
+    margin:0 10px 8px 0;
+    border:0px;
+}
+.floatleft {
+    float:left;
+}
+
+hr {
+    border: 1px dotted #DDD;
+}
+
+div#snaps {
+    margin:0 10px 8px 0;
+    float: left;
+    width: 150px;
+    height: 94px;
+}
+
+#title {
+    margin:20px auto -9px auto;
+    width:700px;
+}
+
+#container {
+    margin:0 auto 15px auto;
+    width:700px;
+    padding:10px;
+    background-color:#FFF;
+    color:#555;
+    border:10px solid #BBB;
+    /*border: 1px solid #CCC;
+    border-right: 2px solid #BBB;
+    border-bottom: 2px solid #BBB;*/
+}
+
+#sidebar {
+    float:right;
+    width:80px;
+    padding-right:10px;
+}
+
+#main {
+    width:550px;
+    float:left;
+    padding-left:10px;
+}
+
+#footer {
+    clear:both;
+}
+
+.plan {
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: #f9f7ed;
+    border-left: 10px solid #CDEB8B;
+    width: 420px;
+}
+
+.contact {
+    margin-bottom:0;
+    font-size:0.8em;
+    background-color:inherit;
+    color:#B4C24B; /* #FF7400 */
+}
+
+.contact a {
+    font-weight: bold;
+    background-color:inherit;
+    color:#B4C24B; /* #FF7400 */
+}

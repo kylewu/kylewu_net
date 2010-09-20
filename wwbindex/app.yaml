@@ -1,0 +1,18 @@
+application: wwb-index 
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+#- url: /favicon\.ico
+#  static_files: static/images/favicon.ico
+#  upload: static/favicon.ico
+#  mime_type: image/x-icon
+  
+- url: /static
+  static_dir: static
+    
+- url: (.*)/
+  static_files: static\1/index.html
+  upload: static/index.html 
+
