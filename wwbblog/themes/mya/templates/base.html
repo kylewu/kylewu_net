@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+{%mf head%}
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>{% block title %} {{ blog.title|escape}}{% endblock %}</title>
+	
+	<meta name="description" content="Kyle WU，this is my personal blog which is hosted on Google App Engine" />
+	<meta name="Keywords" content="kylewu, mac, ubuntu, python, google, firefox" />
+	
+	<meta name="robots" content="all" />
+	
+	<link rel="alternate" type="application/atom+xml" title="{{ blog.title }}" href="{{ blog.feedurl }}" />
+	<link href="/static/wlwmanifest.xml" type="application/wlwmanifest+xml" rel="wlwmanifest"/>
+	<link rel="icon" type="image/ico" href="/favicon.ico" />
+	<link rel="pingback" href="/pingback" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/themes/{{ blog.theme_name }}/style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/themes/{{ blog.theme_name }}/plugins.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/themes/{{ blog.theme_name }}/js/base.js"></script>
+	<script type="text/javascript" src="/themes/{{ blog.theme_name }}/js/comment-reply.js"></script>
+	<!--[if IE 6]>
+	<script src="/themes/{{ blog.theme_name }}/js/DD_belatedPNG.js"></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	
+	<!--[if IE]>
+	<link rel="stylesheet" media="screen" href="/themes/{{ blog.theme_name }}/ie.css" />
+	<![endif]-->
+	{% block head_block %}{% endblock %}
+	{%endmf%}
+</head>
+<body>
+	<!-- wrapper start -->
+	<div id="wrapper">
+	
+		<!-- header start -->
+		<div id="header">
+			<div class="content">
+				<div id="logo">
+				{ 
+				<a href="{{ blog.baseurl }}" title="{{ blog.title}}">{{ blog.title}}</a>
+				 }<span id="subtitle">{{ blog.subtitle|escape}}</span>
+				 </div>
+				 
+				<div id="nav">
+					<ul id="menus">
+						<li class="home {%if ishome%}current_page_item{%else%}page_item{%endif%}">
+							<a href="{{ blog.baseurl }}/" title="Home">Home</a>
+						</li>
+						{{self.m_list_pages}}
+						<li class="page_item">{%mf random_link%}{%endmf%}
+						</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!-- header end -->
+		
+		<!-- topbox start -->
+		<div id="topbox" class="box">
+			<div class="welcome left">
+			Hi, new friend, nice to meet you, welcome to my blog.
+			</div>
+			<div class="subscribe right">
+				<ul>
+					<li class="rssfeed"><span>
+					<a href="http://feeds.feedburner.com/kylewu" title="Subscribe RSS Feed">Subscribe RSS Feed</a></span></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- topbox end -->
+		
+		<!-- container start -->
+		<div id="container">
+			{% block content %}{% endblock %}
+		</div>
+		<div class="clear"></div>
+		<!-- container end -->
+		
+		<!-- footer start -->
+		
+		<div id="footer">
+			<div class="content">
+				<p>Powered by <a href="http://www.kylewu.net" title="kylewu" rel="external nofollow">Kyle Wu</a>. 
+				Theme designed by <a href="http://welee.me/" title="weleeTime" rel="external">weleeTime</a>.</p>
+				{%mf footer%}{%endmf%}
+				<div class="gotop"><a href="#" title="TOP">TOP</a></div>
+			</div>
+		</div>
+		<!-- footer end -->
+	
+	</div>
+	<!-- wrapper end -->
+
+</body>
+</html>		

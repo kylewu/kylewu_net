@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} {{tag}} - {{blog.title}} {% endblock %}
+{% block content %}
+
+
+<!-- content start -->
+<div id="content">
+	<div class="posthead box">
+	Posts Tagged: <strong>{{tag}}</strong>
+	</div>
+	{% if entries %}
+	{% for entry in entries %}
+	<div class="post box" id="post-{{entry.key}}">
+		<h2 class="post-title">
+			<a href="/{{ entry.link|escape }}" title="Permanent Link to {{entry.title|escape}}" rel="bookmark">{{entry.title|escape}}</a>
+		</h2>
+		<div class="postmeta">
+			<ul>
+				<li class="meta-date">{{entry.date|datetz:"Y/m/d H:i"}}</li>
+				
+				<li class="meta-views">{{entry.readtimes}} 次阅读</li>
+				<li class="meta-cat">
+				{%for cate in entry.categories%} 
+					<a href="/category/{{cate.slug}}">{{cate.name}}</a> 
+				{%endfor%}
+				</li>
+				
+				<li class="meta-comments">
+					<a href="/{{entry.link|escape}}#comments">{{entry.commentcount}} 条评论</a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="post-content">
+			{{entry.content_excerpt}}
+			<div class="clear"></div>
+		</div>
+		{%for tag in entry.tags%}
+		<p class="post-tags">{{tag}}</p>
+		{%endfor%}
+		<p class="morelink">
+		<a href="/{{ entry.link|escape }}" title="Continue reading...">
+			More
+		</a>
+		</p>
+	</div>
+	{% endfor %}
+	{% endif %}
+	
+	<!-- pagenavi START -->
+	<div class="pagenavi">
+		{% if show_prev %}<p class="newer right"><a href="/page/{{ pageindex|add:"-1" }}" >&laquo;上一页</a></p>{% endif %}
+		{% if show_next %}<p class="older left"><a href="/page/{{ pageindex|add:"1"}}" >下一页&raquo;</a></p>{% endif %}
+		<div class="clear"></div>
+	</div>
+	<!-- pagenavi END -->
+	
+<!-- content end -->
+</div>
+{% include "sidebar.html" %}
+{% endblock %}

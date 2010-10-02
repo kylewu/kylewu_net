@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} {{entry.title|escape}} - {{blog.title|escape}} {% endblock %}
+
+{% block head_block %}
+
+{% if entry %}
+{%if entry.strtags%}<meta name="Keywords" content="{{entry.strtags|escape}}" />{%endif%}
+{%if entry.excerpt%} <meta name="Description" content="{{entry.excerpt|escape}}" />{%endif%}
+{% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+<!-- content start -->
+<div id="content">
+	{% if entry %}
+	
+	<div class="post box" id="post-{{entry.key}}">
+		<h2 class="post-title">
+			<a href="/{{ entry.link|escape }}" title="Permanent Link to {{entry.title|escape}}" rel="bookmark">{{entry.title|escape}}</a>
+		</h2>
+		<div class="postmeta">
+			<ul>
+				<li class="meta-date">{{entry.date|datetz:"Y/m/d H:i"}}</li>
+				
+				<li class="meta-views">{{entry.readtimes}} Read</li>
+				<li class="meta-cat">
+				{%for cate in entry.categories%} 
+					<a href="/category/{{cate.slug}}">{{cate.name}}</a> 
+				{%endfor%}
+				</li>
+				
+				<li class="meta-comments">
+					<a href="/{{entry.link|escape}}#comments">{{entry.commentcount}} Comments</a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="post-content">
+			{{entry.content_excerpt}}
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+	{% else %}
+			<h2 class="center">Not Found</h2>
+			<p class="center">Sorry, no result.</p>
+	{% endif %}
+	{% include "comments.html" %}
+	
+</div>
+<!-- content end -->
+{% include "sidebar.html" %}
+{% endblock %}

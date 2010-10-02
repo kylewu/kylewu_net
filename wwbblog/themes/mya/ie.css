@@ -1,0 +1,68 @@
+/* This stylesheet used in IE6, IE7 and IE8 only. */
+#topbox {
+	padding: 6px 15px 1px;
+}
+
+#topbox .subscribe {
+	_margin-right: -7px;
+}
+
+#content .post .morelink {
+	_bottom: 11px;
+}
+
+.post .post-meta {
+	margin-bottom: 20px;
+}
+
+#left-sidebar .widget ul li {
+	width: 116px;
+}
+
+#right-sidebar .widget ul li {
+	width: 168px;
+}
+
+#searchbox .searchfield {
+	width: 110px;
+}
+
+#searchbox .searchbutton {
+	padding: 3px 1px 4px;
+}
+
+#content .post .post-content .blogroll {
+	margin: 0 0 20px;
+	_margin: 0 0 20px;
+	width: 600px;
+}
+
+#content .post .post-content .blogroll ul li {
+	width: 180px;
+	line-height: 1.5;
+}
+
+.re_icon {
+	_right: 15px;
+}
+
+#commentlist li ul.children li .re_icon {
+	_right: 30px;
+}
+
+#commentlist li ul.children li ul.children .re_icon {
+	_right: 40px;
+}
+
+#commentlist li ul.children li ul.children li ul.children .re_icon {
+	_right: 50px;
+}
+
+#commentlist li ul.children li ul.children li ul.children li ul.children .re_icon {
+	_right: 60px;
+}
+
+#comment-personaldetails p label {
+	margin-bottom: 8px;
+	display: inline-block;
+}

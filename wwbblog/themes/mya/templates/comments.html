@@ -1,0 +1,99 @@
+{% if entry.allow_comment %}
+<script type="text/javascript" src="/themes/{{ blog.theme_name }}/js/comment.js"></script>
+<!-- You can start editing here. -->
+<div id="commentblock">
+
+{% if comments %}
+	<div id="comments" class="box">
+		<p class="left"><span id="comment-num">{{ entry.commentcount }} </span> comments</p>
+		<p class="right">
+		<a href="#respond" class="addcomment">Add comment</a>
+		<div class="clear"></div>
+	</div>
+	
+	<ol class="commentlist" id="commentlist">
+		{% for comment in comments %}
+		<li id="li-comment-{{comment.key.id}}" class="comment even thread-even depth-1">
+			<div id="comment-{{comment.key.id}}">
+				<div class="comment-author vcard">
+					<div class="message_head">
+						<cite>
+						{%if comment.weburl %}
+						<a class="url" rel="external nofollow" href="{{comment.weburl}}">{{comment.author}}</a>
+						{% else %}{{comment.author}}{%endif%}
+						</cite>
+						<span class="timestamp">x {{comment.date|datetz:"Y-m-d"}} @ {{comment.date|datetz:"H:i"}}</span>
+						<div class="re_icon" style="display: none;">
+							<a class="comment-reply-link" onclick="return addComment.moveForm('comment-{{comment.key.id}}', '{{comment.key.id}}', 'respond', '{{entry.key}}')" 
+							href="/{{entry.link|escape}}?replytocom={{comment.key.id}}#respond">Reply</a>
+						</div>
+						<span class="get-id">#comment-{{comment.key.id}}</span>
+					</div>
+					<div class="message_body">
+						<div class="avatarbg">
+						<img alt='' src='{{comment.gravatar_url}}' class='avatar avatar-40 photo' height='40' width='40' />
+						</div>
+						<p>{{comment.content}}</p>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ol>
+{% endif %}
+
+<div id="respond" class="box">
+	<div id="cancel-comment-reply" class="right">
+		<a id="cancel-comment-reply-link" style="display: none;" rel="nofollow" href="/{{entry.link|escape}}?replytocom={{comment.key.id}}#respond">Cancel Reply</a>
+	</div>
+
+	<input type="hidden" value="{{blog.comment_check_type}}" id="check_type"/>
+	<form action="/post_comment" method="post" id="commentform">
+	
+		<p class="comment-form-title">Leave A Reply</p>
+		<div id="comment-personaldetails">
+			<p>
+				<input type="text" name="author" id="author" value="" size="22" tabindex="1" />
+				<label for="author">Name</label>
+			</p>
+			
+			<p>
+				<input type="text" name="email" id="email" value="" size="22" tabindex="2" />
+				<label for="email">Email (do not published)</label>
+			</p>
+			
+			<p>
+				<input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+				<label for="url">Website</label>
+			</p>
+			<p>
+				<div id="checkarea" style='display:none'>
+				<input type="text" name="checkret" id="checkret" value="" size="22" tabindex="4"></input>
+				<label for="checkret">identifying code<span id="check"></span></label>
+				</div>
+			</p>
+		</div>
+		
+		<div id="re-use"><textarea name="comment" id="comment" cols="55%" rows="6" tabindex="5"></textarea></div>
+		<p>
+			<input class="formbutton" name="submit" type="submit" id="submit" tabindex="6" value="Post Comment" />
+			<input type="hidden" id="key" name="key" value="{{entry.key}}" />
+			 <input name="reply_notify_mail" id="reply_notify_mail" tabindex="7" 
+                        style="width: auto;" type="checkbox" checked="checked"/>
+                    <label for="reply_notify_mail">Mail me when new reply here</label>
+		</p>
+		<div id="commentload" style="display: none;">submit comment now...</div>
+		
+	</form>
+	
+	<div id="commenterror"></div>
+
+</div>
+
+
+</div>
+
+{% else %}
+<p class="nocomments">Comments are closed</p>
+{% endif %}

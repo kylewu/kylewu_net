@@ -1,0 +1,26 @@
+<li id="li-comment-{{comment.key.id}}" class="comment even thread-even depth-1">
+	<div id="comment-{{comment.key.id}}">
+		<div class="comment-author vcard">
+			<div class="message_head">
+				<cite>
+				{%if comment.weburl %}
+				<a class="url" rel="external nofollow" href="{{comment.weburl}}">{{comment.author}}</a>
+				{% else %}{{comment.author}}{%endif%}
+				</cite>
+				<span class="timestamp">x {{comment.date|datetz:"Y-m-d"}} @ {{comment.date|datetz:"H:i"}}</span>
+				<div class="re_icon" style="display: none;">
+					<a class="comment-reply-link" onclick="return addComment.moveForm('comment-{{comment.key.id}}', '{{comment.key.id}}', 'respond', '{{entry.key}}')" 
+					href="/{{entry.link|escape}}?replytocom={{comment.key.id}}#respond">Reply</a>
+				</div>
+				<span class="get-id">#comment-{{comment.key.id}}</span>
+			</div>
+			<div class="message_body">
+				<div class="avatarbg">
+				<img alt='' src='{{comment.gravatar_url}}' class='avatar avatar-40 photo' height='40' width='40' />
+				</div>
+				<p>{{comment.content}}</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</li>

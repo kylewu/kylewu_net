@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %} {{entry.title|escape}} - {{blog.title|escape}} {% endblock %}
+
+{% block head_block %}
+
+{% if entry %}
+{%if entry.strtags%}<meta name="Keywords" content="{{entry.strtags|escape}}" />{%endif%}
+{%if entry.excerpt%} <meta name="Description" content="{{entry.excerpt|escape}}" />{%endif%}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- content start -->
+<div id="content">
+	{% if entry %}
+	<div class="posthead box">
+		<a href="/" title="Back to Home">Home</a> &raquo; {%for cate in entry.categories%} <a href="/category/{{cate.slug}}">{{cate.name}}</a> {%endfor%} &raquo; {{ entry.title|escape }}
+	</div>
+	
+	<div class="post box" id="post-{{entry.key}}">
+		<h1 class="post-title">
+		<a href="/{{entry.link|escape}}" title="{{ entry.title|escape }}" rel="bookmark">
+			{{ entry.title|escape }}
+		</a>
+		</h1>
+		<div class="postmeta">
+			<ul>
+				<li class="meta-date">{{entry.date|datetz:"Y/m/d H:i"}}</li>
+				
+				<li class="meta-views">{{entry.readtimes}} Read</li>
+				
+				<li class="meta-cat">
+				{%for cate in entry.categories%} <a href="/category/{{cate.slug}}">{{cate.name}}</a> {%endfor%}
+				</li>
+				<li class="meta-comments">
+				<a href="/{{entry.link|escape}}#comments">{{entry.commentcount}} 条评论</a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="post-content">
+			{{ entry.content }}
+			<div class="clear"></div>
+		</div>
+		{% if entry.tags%}		
+		<p class="post-tags">
+			{%for tag in entry.tags%}
+				<a href="/tag/{{tag|urlencode}}">{{tag}}</a>&nbsp;
+			{%endfor%}
+		</p>
+		{%endif%}
+	</div>
+	
+	<!-- related-posts start -->
+	{% if relateposts %}
+	<div class="related-posts box">
+		<h2 class="related_post_title">Related Posts</h2>
+		<ul class="related_post">
+		{%for post in relateposts%}
+			<li><a href="/{{post.link|escape}}">{{post.title|escape}} </a> - {{post.date|datetz:"Y/m/d"}} - Comments({{post.commentcount}}) - Read ({{post.readtimes}})</li>
+		{%endfor%}
+		</ul>
+	</div>
+	{% endif %}	
+	<!-- related-posts end -->
+	{% endif %}
+	
+	<!-- postnavi start -->
+	<div class="postnavi box">
+		{%for prev in entry.prev%}
+		<p class="prev right"><a href="/{{prev.link}}">{{prev.title}}</a></p>
+		{%endfor%}
+		{%for next in entry.next%}
+		<p class="next left"><a href="/{{next.link}}">{{next.title}}</a></p>
+		{%endfor%}
+		<div class="clear"></div>
+	</div>
+	<!-- postnavi end -->
+	{% include "comments.html" %}
+	
+</div>
+<!-- content end -->
+{% include "sidebar.html" %}
+{% endblock %}

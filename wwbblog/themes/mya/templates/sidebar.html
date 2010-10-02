@@ -1,0 +1,124 @@
+
+<!-- sidebar start -->
+<div id="left-sidebar" class="sidebar">
+	<div class="widget">
+		<h3 class="widget-title">About Me</h3>
+		<p>{{blog.blognotice}}</p>
+	</div>
+	{% include "search.html" %}
+	
+	<div class="widget">
+		<h3 class="widget-title">Recent Posts</h3>
+		{% if blog.recentposts %}
+		<ul>
+			{% for entry in blog.recentposts %}
+			<li><a href="/{{entry.link|escape}}" title="{{entry.title|escape}}">{{entry.title|escape}}</a>({{entry.readtimes}})</li>
+			{%endfor%}
+		</ul>
+		{% endif %}
+	</div>
+	<div class="widget">
+		<h3 class="widget-title">Popular Posts</h3>
+		{% if blog.hotposts %}
+		<ul>
+			{% for entry in blog.hotposts %}
+			<li><a href="/{{entry.link|escape}}" title="{{entry.title|escape}}">{{entry.title|escape}}</a>({{entry.readtimes}})</li>
+			{%endfor%}
+		</ul>	
+		{% endif %}
+	</div>
+	<div class="widget widget_recentcomments">
+		<h3 class="widget-title">Recent Comments</h3>
+		{% if recent_comments %}
+		<ul>
+		{% for comment in recent_comments %}
+			<li>
+				<a href="{{comment.entry.link}}#comment-{{comment.key.id}}" title="Comment in ：{{comment.entry.title|escape}}">{{comment.author}}:</a>
+				{{comment.shortcontent}}...
+			</li>
+		{%endfor%}	
+		</ul>
+		{% endif %}
+	</div>
+	
+	
+	<div class="widget">
+		<h3 class="widget-title">Tag Cloud</h3>
+		{% if alltags %}
+			{% for t in alltags %}
+			<a title="{{ t.tagcount }} pages" href="/tag/{{t.tag|urlencode}}"><span style='font-size:{{ t.tagcount|add:9 }}px;'>{{t.tag}}</span></a>
+			{%endfor%}
+		{% endif %}
+	</div>
+	
+</div>
+<script type="text/javascript">
+		<!--//
+			function loginp()
+			{
+			   $.getJSON("/do/info_login", function(ret){
+					  if( ret.islogin)
+					  {
+						html='<li><a href="{{self.logouturl}}">注销</a></li>';
+						if (ret.isadmin)
+						html+=' <li><a href="/admin">管理</a></li>';
+						$('#langpref').html(html);
+
+					  }
+					  else
+					  {
+						$('#langpref').html('<li><a href="/admin">登录</a></li>');
+						if(typeof(get_check_area)!='undefined')
+							get_check_area({{blog.comment_check_type}});
+					  }
+			   });
+			}
+			loginp();
+		//-->
+	</script>
+<div id="right-sidebar" class="sidebar">
+		
+		<div class="widget">
+			<h3 class="widget-title">Categories</h3>
+			{% if categories %}
+			<ul>
+			{%for cate in categories%}
+			  <li class="cat-item">
+			  	<a href="/category/{{cate.slug}}" title="View all posts filed under wordpress">{{cate.name}}</a>({{cate.count}})
+			  </li>
+			{%endfor%}
+			</ul>
+			{% endif %}
+		</div>
+		
+		<div class="widget">
+			<h3 class="widget-title">Archives</h3>
+			{% if archives %}
+			<ul>
+				{%for archive in archives%}
+				<li><a href="/{{archive.year}}/{{archive.month}}">{{archive.year}}年{{archive.month}}月</a>({{archive.entrycount}})</li>
+				{%endfor%}
+			</ul>
+			{% endif %}
+		</div>
+		
+		<div class="widget">
+			<h3 class="widget-title">Friends</h3>
+			{% if blogroll %}
+			<ul>
+				{%for link in blogroll%}
+				<li><a href="{{link.href}}" target="_blank"><img src="{{link.href}}/favicon.ico" width="16" height="16"/>{{link.linktext}}</a></li>
+				{%endfor%}
+				
+			</ul>
+			{% endif %}
+		</div>
+		
+		<div class="widget">
+			<h3 class="widget-title">Meta</h3>
+			<ul id="langpref">
+				<li>Manage</li>
+			</ul>
+		</div>
+</div>
+<!-- sidebar end -->
