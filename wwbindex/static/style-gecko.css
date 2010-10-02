@@ -8,7 +8,7 @@ body {
     margin:0;
     font:90% verdana,tahoma,sans-serif;
     /*background: #E8E3CF;*/
-    background: #ebe9db url('static/images/bg.gif') repeat-x;
+    background: #ebe9db url('images/bg.gif') repeat-x;
     color:#555;
 }
 
